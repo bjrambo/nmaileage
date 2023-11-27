@@ -1,0 +1,83 @@
+<load target="https://cdn.iamport.kr/js/iamport.payment-1.2.1.js"/>
+
+<load target="./css/charge.css" />
+<div class="pop-charge-notice-header">
+	<h2>마일리지 충전</h2>
+</div>
+
+<div class="select_price">
+	<h2>가격 선택</h2>
+	<input type="radio" id="price_1000" class="ridio_price" name="price" value="1000"><label for="price_1000">1000원</label>
+	<input type="radio" id="price_10000" class="ridio_price" name="price" value="10000"><label for="price_10000">10,000원</label>
+	<input type="radio" id="price_30000" class="ridio_price" name="price" value="30000"><label for="price_30000">30,000원</label>
+	<input type="radio" id="price_50000" class="ridio_price" name="price" value="50000"><label for="price_50000">50,000원</label>
+	<input type="radio" id="price_100000" class="ridio_price" name="price" value="100000"><label for="price_100000">100,000원</label>
+	<input type="radio" id="price_300000" class="ridio_price" name="price" value="300000"><label for="price_300000">300,000원</label>
+</div>
+
+<div class="select_price">
+	<h2>결제 방식</h2>
+	<input type="radio" id="card" class="ridio_price" name="payment_method" value="card"><label for="card">카드</label>
+	<input type="radio" id="phone" class="ridio_price" name="payment_method" value="phone"><label for="phone">휴대폰</label>
+	<input type="radio" id="trans" class="ridio_price" name="payment_method" value="trans"><label for="trans">실시간 계좌이체</label>
+	<input type="radio" id="vbank" class="ridio_price" name="payment_method" value="vbank"><label for="vbank">가상계좌</label>
+	
+</div>
+
+<section class="pop-charge-notice-confirm">
+	<div class="pop-charge-notice-confirm-title">
+		<h2>유의사항 및 이용약관 확인</h2>
+	</div>
+	<ul class="pop-charge-notice-confirm-info">
+		<li>
+			<input type="checkbox" id="chkAgree1">
+			<label for="chkAgree1">마일리지 충전 시 유의사항 및 결제대행사의 결제정보 제공에 동의합니다.</label>
+			<a href="/link" target="_blank">[상세보기]</a>
+		</li>
+		<li>
+			<input type="checkbox" id="chkAgree2">
+			<label for="chkAgree2">꾸르페이 서비스 이용약관에 동의합니다.</label>
+			<a href="/link" target="_blank">[상세보기]</a>
+		</li>
+	</ul>
+</section>
+
+<section class="pop-charge-bottom">
+	<button onclick="requestPay()">결제하기</button>
+</section>
+
+<script>
+	function requestPay() {
+		var price = $("input[name='price']:checked").val();
+		var payment_method = $("input[name='payment_method']:checked").val();
+		
+		console.log(price);
+		if(price < 1000)
+		{
+			alert('가격을 잘못 입력하였습니다.');
+			return false;
+		}
+		
+		var IMP = window.IMP; // 생략 가능
+		// 테스트용 - 실결제는 : 다날 확인
+		IMP.init("imp86160736"); // 예: imp00000000
+		// IMP.request_pay(param, callback) 결제창 호출
+		IMP.request_pay({
+			// param
+			pg: "html5_inicis.INIBillTst",
+			pay_method: payment_method,
+			merchant_uid: "{$order_id}",
+			name: "마일리지 충전",
+			amount: price,
+			buyer_email : '{$logged_info->email_address}',
+			buyer_name : '{$logged_info->user_name}',
+			buyer_tel : '{!empty($logged_info->phone_number) ? $logged_info->phone_number : "010-0000-0000"}',
+		}, function (rsp) { // callback
+			if (rsp.success) {
+				console.log(rsp);
+			} else {
+				console.log('false');
+			}
+		});
+	}
+</script>

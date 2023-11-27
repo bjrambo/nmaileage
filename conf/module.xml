@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<grants>
+	</grants>
+	<permissions>
+	</permissions>
+	<actions>
+		<action name="dispNmileageAdminAllMileageHistory" class="Controllers\Admin"  admin_index="true" />
+		<action name="dispNmileageAdminModInstList" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminConfig" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminInsertModInst" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminAdditionSetup" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminSkinInfo" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminMobileSkinInfo" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminMileageList" class="Controllers\Admin"  />
+		<action name="dispNmileageAdminMileageHistory" class="Controllers\Admin"  />
+
+		<action name="procNmileageAdminConfig" class="Controllers\Admin"  />
+		<action name="procNmileageAdminInsertModInst" class="Controllers\Admin"  />
+		<action name="procNmileageAdminDeleteModInst" class="Controllers\Admin"  />
+		<action name="procNmileageAdminPlusMileage" class="Controllers\Admin"  ruleset="insertMileage" />
+		<action name="procNmileageAdminMinusMileage" class="Controllers\Admin"  />
+
+		<action name="getNmileageAdminDeleteModInst" class="Controllers\Admin" />
+		<action name="getNmileageAdminPlusMileage" class="Controllers\Admin" />
+		<action name="getNmileageAdminMinusMileage" class="Controllers\Admin" />
+		<action name="getNmileageAdminCheckUserId" class="Controllers\Admin" />
+
+		<action name="getMileage" type="model" />
+		<action name="getMileageByProduct" type="model" />
+
+		<action name="dispNmileageMileageHistory" type="view" index="true" />
+		<action name="dispNmileageMyMileage" type="view" />
+		<action name="dispNmileageCharge" type="view" />
+
+		<action name="procNmileageCharge" type="controller" />
+	</actions>
+</module>

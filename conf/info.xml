@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">마일리지</title>
+    <description xml:lang="ko">람보님의 쇼핑몰 모듈에 연동이 됩니다.</description>
+	<version>2.5.2</version>
+	<date>2017-03-19</date>
+    <category>service</category>
+    <author email_address="bjrambo@bjrambo.com" link="https://bjrambo.com/">
+        <name xml:lang="ko">람보</name>
+    </author>
+</module>
